@@ -7,8 +7,6 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -31,8 +29,6 @@ public class RangeView extends View {
 
     private int drawHeight;//绘制高度
     private int drawWidth;//绘制宽度
-
-    int top = 0;
 
 
     /**
@@ -101,46 +97,12 @@ public class RangeView extends View {
     }
 
 
-    public void setupRecycleView(RecyclerView recyclerView) {
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-            }
-
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                //方式一、查找RangeView
-                LinearLayoutManager lLt = (LinearLayoutManager) recyclerView.getLayoutManager();
-//                if (lLt.getOrientation() == LinearLayout.VERTICAL) {
-//                    int findCompletelyVisibleItemPosition = dy > 0 ? lLt.findLastCompletelyVisibleItemPosition() : lLt.findFirstCompletelyVisibleItemPosition();
-//                    View v = lLt.findViewByPosition(findCompletelyVisibleItemPosition);
-//                    if (v instanceof ViewGroup) {
-//                        ViewGroup viewGroup = (ViewGroup) v;
-//                        for (int i = 0; i < viewGroup.getChildCount(); i++) {
-//                            if (viewGroup.getChildAt(i) instanceof RangeView) {
-//                                mRangePosition = findCompletelyVisibleItemPosition;
-//                                break;
-//                            }
-//                        }
-//                    }
-                //方式二 直接getTag获取
-                View rangeView = lLt.findViewByPosition((Integer) getTag());
-                if (rangeView != null) {
-                    moveRangeView(rangeView, recyclerView.getHeight());
-                }
-            }
-//        }
-        });
-    }
-
     /**
      * 移动图片
      *
      * @param recycleViewHeight
      */
-    private void moveRangeView(View rangeView, int recycleViewHeight) {
+    public void moveRangeView(View rangeView, int recycleViewHeight) {
         float rangeHeight = recycleViewHeight - rangeView.getHeight();
         float value = getScrBitmapHeight() / rangeHeight;
         int bottom = (int) (value * rangeView.getTop() + (1 - (value * rangeView.getTop() / getScrBitmapHeight())));
@@ -172,7 +134,9 @@ public class RangeView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawBitmap(defBitmap, src, def, mPaint);
+        if (defBitmap != null) {
+            canvas.drawBitmap(defBitmap, src, def, mPaint);
+        }
     }
 
 }

@@ -51,10 +51,10 @@ public class ListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 break;
             case 2:
                 RangeViewHolder viewHolder = (RangeViewHolder) holder;
-                viewHolder.rangeView.setupRecycleView(recyclerView);
-                viewHolder.rangeView.setTag(position);
+//                viewHolder.rangeView.setupRecycleView(recyclerView);
+//                viewHolder.rangeView.setTag(position);
                 switch (position) {
-                    case 4:
+                    case 5:
                         viewHolder.rangeView.setDefBitmap(BitmapFactory.decodeResource(viewHolder.rangeView.getResources(), R.mipmap.bbb));
                         break;
                     case 6:
@@ -77,7 +77,8 @@ public class ListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public int getItemViewType(int position) {
-        if (position == 4 || position == 6 || position == 15) {
+//        if (position == 4 || position == 6 || position == 15) {
+        if (position == 5 || position == 15) {
             return 2;
         } else {
             return 1;

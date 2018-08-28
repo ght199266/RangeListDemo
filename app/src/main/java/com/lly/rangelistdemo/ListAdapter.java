@@ -55,13 +55,10 @@ public class ListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 //                viewHolder.rangeView.setTag(position);
                 switch (position) {
                     case 5:
-                        viewHolder.rangeView.setDefBitmap(BitmapFactory.decodeResource(viewHolder.rangeView.getResources(), R.mipmap.bbb));
-                        break;
-                    case 6:
-                        viewHolder.rangeView.setDefBitmap(BitmapFactory.decodeResource(viewHolder.rangeView.getResources(), R.mipmap.aaa));
+                        viewHolder.rangeView.setDefBitmap(BitmapFactory.decodeResource(viewHolder.rangeView.getResources(), R.mipmap.meinv));
                         break;
                     case 15:
-                        viewHolder.rangeView.setDefBitmap(BitmapFactory.decodeResource(viewHolder.rangeView.getResources(), R.mipmap.temp));
+                        viewHolder.rangeView.setDefBitmap(BitmapFactory.decodeResource(viewHolder.rangeView.getResources(), R.mipmap.ccc));
                         break;
                 }
                 break;
